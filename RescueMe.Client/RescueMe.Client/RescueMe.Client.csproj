@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>RescueMe.Client</ApplicationTitle>
+		<ApplicationTitle>RescueMe</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.rescueme.client</ApplicationId>
@@ -47,5 +47,12 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\Responses\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="ViewModels\" />
+	</ItemGroup>
+
 
 </Project>
