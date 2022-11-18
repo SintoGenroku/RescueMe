@@ -51,7 +51,10 @@
 	<ItemGroup>
 	  <Folder Include="Models\Responses\" />
 	  <Folder Include="Services\" />
-	  <Folder Include="ViewModels\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RescueMe.Refit\RescueMe.Refit.csproj" />
 	</ItemGroup>
 
 
