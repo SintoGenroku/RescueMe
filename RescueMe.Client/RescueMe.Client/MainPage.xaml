@@ -4,6 +4,7 @@
              x:Class="RescueMe.Client.MainPage">
 
     <ScrollView>
+        
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"

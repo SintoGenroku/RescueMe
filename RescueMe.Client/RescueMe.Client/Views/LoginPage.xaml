@@ -2,12 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RescueMe.Client.Views.LoginPage"
-             Title="LoginPage">
+             xmlns:controls="clr-namespace:RescueMe.Client.Controls"
+             Shell.NavBarIsVisible="False"
+             >
 
     <Grid>
-        <StackLayout Margin="20">
-            
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <controls:Header/>
+        <StackLayout Margin="20" Grid.Row="1">
+    
             <StackLayout Margin="0,80">
                 <Label FontSize="32" Text="Welcome Back"/>
                 <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
@@ -16,12 +22,13 @@
 
             <StackLayout>
                 <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Username"/>
+                       FontSize="16" Text="Your phone number"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
                     <Entry BackgroundColor="Transparent" Placeholder="Enter username" 
                            TextColor="Black" Margin="5,0"
-                           PlaceholderColor="Gray" />
+                           PlaceholderColor="Gray"
+                           Text="{Binding PhoneNumber}"/>
 
                 </Grid>
 
@@ -31,13 +38,16 @@
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
                     <Entry BackgroundColor="Transparent" Placeholder="Enter password" 
                            TextColor="Black" Margin="5,0"
-                           PlaceholderColor="Gray" IsPassword="True"/>
+                           PlaceholderColor="Gray" IsPassword="True"
+                           Text="{Binding Password}"/>
 
                 </Grid>
             </StackLayout>
 
             <Button Margin="0,15" BackgroundColor="{StaticResource SecondaryColor}"
-                    Text="Sign in" TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansSemibold"/>
+                    Text="Sign in" TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansSemibold"
+                    Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
 
             <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal">
 

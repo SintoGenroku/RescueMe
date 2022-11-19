@@ -1,4 +1,6 @@
 ﻿using RescueMe.Refit;
+using RescueMe.Refit.Models.Account;
+using System.Net.Http.Headers;
 
 namespace RescueMe.Client.Handlers
 {
@@ -13,16 +15,18 @@ namespace RescueMe.Client.Handlers
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var requestToken = new
+            var requestToken = new RefreshRequestModel
             {
-                client_id = "api",
-                client_secret = "users-secret",
-                grant_type = "client_credentials",
-                scope = "ApiScope"
+                ClientId = "api",
+                ClientSecret = "users-secret",
+                GrantType = "refresh_token",
+                Scope = "ApiScope",
+                RefreshToken = Preferences.Get("refresh_token", "empty")
             };
-            //var token = await _accountApi.LoginAsync(requestToken)
+            var token = await _accountApi.RefreshAsync(requestToken);
 
-            //request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+
             return await base.SendAsync(request, cancellationToken);
         }
     }

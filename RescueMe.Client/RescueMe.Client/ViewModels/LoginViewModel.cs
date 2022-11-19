@@ -1,10 +1,11 @@
-﻿using RescueMe.Client.State.Navigators.Abstracts;
+﻿using Microsoft.Toolkit.Mvvm.Input;
+using RescueMe.Client.Services.Abstracts;
 using RescueMe.Client.ViewModels.Abstracts;
-using System.Windows.Input;
+using RescueMe.UserModels.Requests;
 
 namespace RescueMe.Client.ViewModels
 {
-    public class LoginViewModel : ViewModelBase
+    public partial class LoginViewModel : ViewModelBase
     {
         private string _phoneNimber;
         public string PhoneNumber
@@ -36,6 +37,8 @@ namespace RescueMe.Client.ViewModels
             }
         }
 
+        private IConnectivity _connectivity;
+
         public bool CanLogin => !string.IsNullOrEmpty(PhoneNumber) && !string.IsNullOrEmpty(Password);
 
         public MessageViewModel ErrorMessageViewModel { get; }
@@ -44,21 +47,48 @@ namespace RescueMe.Client.ViewModels
         {
             set => ErrorMessageViewModel.Message = value;
         }
-        public ICommand LoginCommand { get; }
-       /* public ICommand ViewRegisterCommand { get; }
-        public LoginViewModel(IAuthenticator authenticator, INavigator loginRenavigator, INavigator registerRenavigator)
+
+        private readonly IAuthenticationService _authenticationService;
+
+        public LoginViewModel(IConnectivity connectivity, IAuthenticationService authenticationService)
         {
             ErrorMessageViewModel = new MessageViewModel();
 
-            LoginCommand = new LoginCommand(this, authenticator, loginRenavigator);
-            ViewRegisterCommand = new RenavigateCommand(registerRenavigator);
-        }*/
+            _connectivity = connectivity;
+            _authenticationService = authenticationService;
+        }
 
-        public override void Dispose()
+        [ICommand]
+        async Task LoginAsync()
         {
-            ErrorMessageViewModel.Dispose();
-            
-            base.Dispose();
+            if (IsBusy)
+            {
+                return;
+            }
+            try
+            {
+                if (_connectivity.NetworkAccess is not NetworkAccess.Internet)
+                {
+                    await Shell.Current.DisplayAlert("Internet Offline", "Check your internet and try again!", "Ok");
+                    return;
+                }
+                var loginRequest = new UserLoginModel
+                {
+                    Phone = PhoneNumber,
+                    Password = Password,
+                };
+                await _authenticationService.LoginAsync(loginRequest);
+                await Shell.Current.GoToAsync($"{nameof(MainPage)}");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.ToString(), "ok");
+            }
+            finally
+            {
+                IsBusy = false;
+
+            }
         }
     }
 }

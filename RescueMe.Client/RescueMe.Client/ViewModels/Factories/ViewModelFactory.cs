@@ -1,4 +1,4 @@
-﻿using RescueMe.Client.State.Navigators;
+﻿/*using RescueMe.Client.State.Navigators;
 using RescueMe.Client.ViewModels.Abstracts;
 using RescueMe.Client.ViewModels.Factories.Abstracts;
 using System;
@@ -31,3 +31,4 @@ namespace RescueMe.Client.ViewModels.Factories
         }
     }
 }
+*/
