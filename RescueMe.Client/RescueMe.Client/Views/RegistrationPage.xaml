@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RescueMe.Client.Views.RegistrationPage"
+             xmlns:controls="clr-namespace:RescueMe.Client.Controls"
+              Shell.NavBarIsVisible="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <controls:Header/>
+        <StackLayout Margin="10 20" Grid.Row="1">
+
+            <StackLayout Margin="0,80">
+                <Label FontSize="32" FontFamily="SegoeUI" Text="Welcome to RescueMe!"/>
+                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Sign up to continue"/>
+            </StackLayout>
+
+                
+            
+            <StackLayout>
+                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Your name"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                    <Entry BackgroundColor="Transparent" Placeholder="Enter name" 
+                           TextColor="Black" Margin="5,0"
+                           PlaceholderColor="Gray"
+                           FontFamily="SegoeUI"
+                           Text="{Binding Name}"/>
+
+                </Grid>
+
+                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Your surname"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                    <Entry BackgroundColor="Transparent" Placeholder="Enter surname" 
+                           TextColor="Black" Margin="5,0"
+                           PlaceholderColor="Gray"
+                           FontFamily="SegoeUI"
+                           Text="{Binding Surname}"/>
+
+                </Grid>
+                
+                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Your phone number"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                    <Entry BackgroundColor="Transparent" Placeholder="Enter phone" 
+                           TextColor="Black" Margin="5,0"
+                           PlaceholderColor="Gray"
+                           FontFamily="SegoeUI"
+                           Text="{Binding PhoneNumber}"/>
+
+                </Grid>
+
+                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Your pasport identifier"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                    <Entry BackgroundColor="Transparent" Placeholder="Enter pasport" 
+                           TextColor="Black" Margin="5,0"
+                           PlaceholderColor="Gray"
+                           FontFamily="SegoeUI"
+                           Text="{Binding Pasport}"/>
+
+                </Grid>
+
+                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Password"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                    <Entry BackgroundColor="Transparent" Placeholder="Enter password" 
+                           TextColor="Black" Margin="5,0"
+                           PlaceholderColor="Gray" IsPassword="True"
+                           FontFamily="SegoeUI"
+                           Text="{Binding Password}"/>
+
+                </Grid>
+
+                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Conform password"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                    <Entry BackgroundColor="Transparent" Placeholder="Repeat your password" 
+                           TextColor="Black" Margin="5,0"
+                           PlaceholderColor="Gray" IsPassword="True"
+                           FontFamily="SegoeUI"
+                           Text="{Binding ConfirmPassword}"/>
+
+                </Grid>
+            </StackLayout>
+
+            <Button Margin="0,15" BackgroundColor="{StaticResource SecondaryColor}"
+                    Text="Sign up" TextColor="{StaticResource PrimaryColor}" FontFamily="SegoeUI"
+                    Command="{Binding RegisterCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+            <Label 
+                    BindingContext="{Binding ErrorMessageViewModel}"
+                    HorizontalOptions="Center"
+                    TextColor="DarkRed"
+                    Text="{Binding Message}"
+                    IsVisible="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal">
+
+                <Button FontFamily="SegoeUI" TextColor="Black" 
+                       FontSize="16" Text="I have an account"  VerticalOptions="EndAndExpand" BackgroundColor="White"
+                       HorizontalOptions="EndAndExpand" 
+                       Clicked="LoginRedirect"
+                       />
+
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>

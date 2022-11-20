@@ -29,5 +29,10 @@ namespace RescueMe.Client.Services
             Preferences.Set(response.TokenType, "token_type");
 
         }
+
+        public async Task RegisterAsync(UserRegistrationModel registrationViewModel)
+        {
+            await _accountApi.RegisterAsync(registrationViewModel);
+        }
     }
 }

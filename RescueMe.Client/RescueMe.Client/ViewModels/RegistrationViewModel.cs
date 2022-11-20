@@ -1,40 +1,26 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using RescueMe.Client.Services.Abstracts;
 using RescueMe.Client.ViewModels.Abstracts;
-using RescueMe.Client.Views;
 using RescueMe.UserModels.Requests;
+using System.ComponentModel.DataAnnotations;
 
 namespace RescueMe.Client.ViewModels
 {
-    public partial class LoginViewModel : ViewModelBase
+    public partial class RegistrationViewModel : ViewModelBase
     {
-        private string _phoneNimber;
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNimber;
-            }
-            set
-            {
-                _phoneNimber = value;
-                OnPropertyChanged(nameof(_phoneNimber));
-            }
-        }
+        public string Name { get; set; }
 
-        private string _password;
-        public string Password
-        {
-            get
-            {
-                return _password;
-            }
-            set
-            {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
-            }
-        }
+        public string Surname { get; set; }
+
+        public string PhoneNumber { get; set; }
+        
+        public string Pasport{ get; set; }
+
+        public string Password { get; set; }
+
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        public string ConfirmPassword { get; set; }
+
 
         private IConnectivity _connectivity;
 
@@ -47,7 +33,7 @@ namespace RescueMe.Client.ViewModels
 
         private readonly IAuthenticationService _authenticationService;
 
-        public LoginViewModel(IConnectivity connectivity, IAuthenticationService authenticationService)
+        public RegistrationViewModel(IConnectivity connectivity, IAuthenticationService authenticationService)
         {
             ErrorMessageViewModel = new MessageViewModel();
 
@@ -56,7 +42,7 @@ namespace RescueMe.Client.ViewModels
         }
 
         [ICommand]
-        async Task LoginAsync()
+        async Task RegisterAsync()
         {
             if (IsBusy)
             {
@@ -69,12 +55,18 @@ namespace RescueMe.Client.ViewModels
                     await Shell.Current.DisplayAlert("Internet Offline", "Check your internet and try again!", "Ok");
                     return;
                 }
-                var loginRequest = new UserLoginModel
+                var registrationRequest = new UserRegistrationModel
                 {
+                    FirstName = Name,
+                    SecondName = Surname,
                     Phone = PhoneNumber,
+                    PassportId = Pasport,
                     Password = Password,
+                    PasswordConfirm = ConfirmPassword
+
                 };
-                await _authenticationService.LoginAsync(loginRequest);
+                
+                await _authenticationService.RegisterAsync(registrationRequest);
                 await Shell.Current.GoToAsync($"{nameof(MainPage)}");
             }
             catch (Exception ex)

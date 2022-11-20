@@ -13,5 +13,9 @@ namespace RescueMe.Refit
 
         [Post("/authentication-api/token")]
         Task<UserLoginResponseModel> RefreshAsync([Body] RefreshRequestModel request);
+
+        [Post("/authentication-api/registration")]
+        Task RegisterAsync([Body] UserRegistrationModel request);
+
     }
 }
