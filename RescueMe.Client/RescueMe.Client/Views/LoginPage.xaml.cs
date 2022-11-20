@@ -9,4 +9,9 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
 		BindingContext = loginViewModel;
 	}
+
+	private async void RegistrationRedirect(object sender, EventArgs e)
+	{
+        await Shell.Current.GoToAsync("Registration");
+    }
 }

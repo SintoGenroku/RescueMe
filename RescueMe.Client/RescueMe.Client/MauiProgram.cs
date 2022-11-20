@@ -22,13 +22,18 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("Sansation/Sansation_Bold.ttf", "SansationBold");
+				fonts.AddFont("SegoeUI/Segoe UI.ttf", "SegoeUI");
             });
 
 		services.AddSingleton<IConnectivity>(Connectivity.Current);
 		services.AddScoped<LoginViewModel>();
+        services.AddScoped<RegistrationViewModel>();
         services.AddSingleton<MessageViewModel>();
 		services.AddScoped<LoginPage>();
-		services.AddScoped<IAuthenticationService, AuthenticationService>();
+		services.AddScoped<RegistrationPage>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+
 
         services.AddRefitClient<IAccountApi>()
 			.ConfigureHttpClient(config =>
