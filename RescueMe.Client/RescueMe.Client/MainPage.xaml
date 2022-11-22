@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RescueMe.Client.MainPage">
+             x:Class="RescueMe.Client.MainPage"
+             xmlns:controls="clr-namespace:RescueMe.Client.Controls"
+             Shell.NavBarIsVisible="False">
 
-    <ScrollView>
-        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <controls:NavBar Grid.Row="0"/>
+
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
-            VerticalOptions="Center">
-
+            VerticalOptions="Center" Grid.Row="1">
             <Label
                 Text="Click the button if something went wrong"
                 SemanticProperties.HeadingLevel="Level1"
@@ -27,14 +33,16 @@
                 HeightRequest="240"
                 WidthRequest="240"/>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
+            <Button
+                x:Name="SearchBtn"
+                HorizontalOptions="Center"
+                CornerRadius="40"
+                HeightRequest="80"
+                WidthRequest="80">
+                
+            </Button>
 
         </VerticalStackLayout>
-    </ScrollView>
+    </Grid>
 
 </ContentPage>

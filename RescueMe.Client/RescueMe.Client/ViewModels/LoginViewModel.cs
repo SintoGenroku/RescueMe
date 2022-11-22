@@ -74,8 +74,8 @@ namespace RescueMe.Client.ViewModels
                     Phone = PhoneNumber,
                     Password = Password,
                 };
-                await _authenticationService.LoginAsync(loginRequest);
-                await Shell.Current.GoToAsync($"{nameof(MainPage)}");
+                //await _authenticationService.LoginAsync(loginRequest);
+                await Shell.Current.GoToAsync("Main");
             }
             catch (Exception ex)
             {

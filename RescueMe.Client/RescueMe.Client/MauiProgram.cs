@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Refit;
 using RescueMe.Client.Services;
 using RescueMe.Client.Services.Abstracts;
 using RescueMe.Client.ViewModels;
 using RescueMe.Client.Views;
+using RescueMe.Data;
+using RescueMe.Data.Repositories;
+using RescueMe.Data.Repositories.Abstracts;
 using RescueMe.Refit;
 
 namespace RescueMe.Client;
@@ -24,8 +26,10 @@ public static class MauiProgram
 				fonts.AddFont("Sansation/Sansation_Bold.ttf", "SansationBold");
 				fonts.AddFont("SegoeUI/Segoe UI.ttf", "SegoeUI");
             });
+		
+        services.AddEntityFrameworkSqlite().AddDbContext<RescueMeDbContext>();
 
-		services.AddSingleton<IConnectivity>(Connectivity.Current);
+        services.AddSingleton<IConnectivity>(Connectivity.Current);
 		services.AddScoped<LoginViewModel>();
         services.AddScoped<RegistrationViewModel>();
         services.AddSingleton<MessageViewModel>();
@@ -33,7 +37,7 @@ public static class MauiProgram
 		services.AddScoped<RegistrationPage>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
 
-
+		services.AddScoped<IEmergencyRepository, EmergencyRepository>();
 
         services.AddRefitClient<IAccountApi>()
 			.ConfigureHttpClient(config =>

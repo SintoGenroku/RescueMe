@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using RescueMe.Client.Services.Abstracts;
 using RescueMe.Client.ViewModels.Abstracts;
+using RescueMe.Client.Views;
 using RescueMe.UserModels.Requests;
 using System.ComponentModel.DataAnnotations;
 
@@ -66,8 +67,8 @@ namespace RescueMe.Client.ViewModels
 
                 };
                 
-                await _authenticationService.RegisterAsync(registrationRequest);
-                await Shell.Current.GoToAsync($"{nameof(MainPage)}");
+               // await _authenticationService.RegisterAsync(registrationRequest);
+                await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
             }
             catch (Exception ex)
             {
