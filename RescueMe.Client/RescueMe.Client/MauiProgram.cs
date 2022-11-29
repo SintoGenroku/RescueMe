@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Refit;
+﻿using Refit;
 using RescueMe.Client.Services;
 using RescueMe.Client.Services.Abstracts;
 using RescueMe.Client.ViewModels;
@@ -27,23 +26,41 @@ public static class MauiProgram
 				fonts.AddFont("SegoeUI/Segoe UI.ttf", "SegoeUI");
             });
 		
-        services.AddEntityFrameworkSqlite().AddDbContext<RescueMeDbContext>();
-
+        services.AddEntityFrameworkSqlite().AddDbContext<RescueMeDbContext>(/*options => 
+			options.UseSqlite(Constants.connectionString)*/
+		);
         services.AddSingleton<IConnectivity>(Connectivity.Current);
-		services.AddScoped<LoginViewModel>();
+        services.AddSingleton<IGeolocation>(Geolocation.Default);
+
+        services.AddScoped<MainPageViewModel>();
+        services.AddScoped<LoginViewModel>();
         services.AddScoped<RegistrationViewModel>();
         services.AddSingleton<MessageViewModel>();
+        services.AddScoped<HelpDeskViewModel>();
+        services.AddTransient<EmergencyDetailsViewModel>();
+
+		services.AddScoped<MainPage>();
 		services.AddScoped<LoginPage>();
 		services.AddScoped<RegistrationPage>();
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
+		services.AddScoped<HelpDeskPage>();
+		services.AddTransient<EmergencyDetailsPage>();
+        
+		services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IEmergencyService, EmergencyService>();
 
-		services.AddScoped<IEmergencyRepository, EmergencyRepository>();
+        services.AddScoped<IEmergencyRepository, EmergencyRepository>();
 
         services.AddRefitClient<IAccountApi>()
 			.ConfigureHttpClient(config =>
 			{
 				//var stringUrl = builder.Configuration.GetSection("IdentityUri").Value;
-				config.BaseAddress = new Uri("http://localhost:5045");
+				config.BaseAddress = new Uri("http://localhost:5179");
+			});
+        services.AddRefitClient<ILifeguardApi>()
+			.ConfigureHttpClient(config =>
+			{
+				//var stringUrl = builder.Configuration.GetSection("IdentityUri").Value;
+				config.BaseAddress = new Uri("https://localhost:7120");
 			});
 
         return builder.Build();

@@ -4,7 +4,7 @@
     {
         Task<T> FindByIdAsync(params object[] KeyValues);
 
-        Task<IReadOnlyCollection<T>> GetAllAsync();
+        Task<List<T>> GetAllAsync();
 
         Task CreateAsync(T item);
 

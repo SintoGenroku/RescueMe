@@ -11,8 +11,6 @@ namespace RescueMe.Client.ViewModels
     {
         public string Name { get; set; }
 
-        public string Surname { get; set; }
-
         public string PhoneNumber { get; set; }
         
         public string Pasport{ get; set; }
@@ -58,8 +56,7 @@ namespace RescueMe.Client.ViewModels
                 }
                 var registrationRequest = new UserRegistrationModel
                 {
-                    FirstName = Name,
-                    SecondName = Surname,
+                    Name = Name,
                     Phone = PhoneNumber,
                     PassportId = Pasport,
                     Password = Password,

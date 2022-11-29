@@ -4,28 +4,30 @@
              x:Class="RescueMe.Client.Views.RegistrationPage"
              xmlns:controls="clr-namespace:RescueMe.Client.Controls"
               Shell.NavBarIsVisible="False">
+    <ScrollView>
+        
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
         <controls:Header/>
-        <StackLayout  Grid.Row="1">
+            <StackLayout Margin="20, 0"  Grid.Row="1">
 
-            <StackLayout Margin="0,80">
-                <Label FontSize="32" FontFamily="SegoeUI" Text="Welcome to RescueMe!"/>
+            <StackLayout Margin="0,40">
+                <Label FontSize="32" FontFamily="SegoeUI" Text="Добро пожаловать в RescueMe!"/>
                 <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Sign up to continue"/>
+                       FontSize="16" Text="Зарегестрируйтесь, чтобы продолжить"/>
             </StackLayout>
 
                 
             
             <StackLayout>
                 <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Your name"/>
+                       FontSize="16" Text="Введите имя"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter name" 
+                    <Entry BackgroundColor="Transparent" Placeholder="Имя" 
                            TextColor="Black" Margin="5,0"
                            PlaceholderColor="Gray"
                            FontFamily="SegoeUI"
@@ -33,23 +35,12 @@
 
                 </Grid>
 
+                               
                 <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Your surname"/>
+                       FontSize="16" Text="Введите свой номер телефона"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter surname" 
-                           TextColor="Black" Margin="5,0"
-                           PlaceholderColor="Gray"
-                           FontFamily="SegoeUI"
-                           Text="{Binding Surname}"/>
-
-                </Grid>
-                
-                <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Your phone number"/>
-                <Grid Margin="0,5">
-                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter phone" 
+                    <Entry BackgroundColor="Transparent" Placeholder="Номер" 
                            TextColor="Black" Margin="5,0"
                            PlaceholderColor="Gray"
                            FontFamily="SegoeUI"
@@ -58,10 +49,10 @@
                 </Grid>
 
                 <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Your pasport identifier"/>
+                       FontSize="16" Text="Введите свой номер паспорта"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter pasport" 
+                    <Entry BackgroundColor="Transparent" Placeholder="№ паспорта" 
                            TextColor="Black" Margin="5,0"
                            PlaceholderColor="Gray"
                            FontFamily="SegoeUI"
@@ -70,10 +61,10 @@
                 </Grid>
 
                 <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Password"/>
+                       FontSize="16" Text="Придумайте пароль"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter password" 
+                    <Entry BackgroundColor="Transparent" Placeholder="пароль" 
                            TextColor="Black" Margin="5,0"
                            PlaceholderColor="Gray" IsPassword="True"
                            FontFamily="SegoeUI"
@@ -82,10 +73,10 @@
                 </Grid>
 
                 <Label FontFamily="SegoeUI" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Conform password"/>
+                       FontSize="16" Text="Введите пароль еще раз"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Repeat your password" 
+                    <Entry BackgroundColor="Transparent" Placeholder="пароль" 
                            TextColor="Black" Margin="5,0"
                            PlaceholderColor="Gray" IsPassword="True"
                            FontFamily="SegoeUI"
@@ -95,7 +86,7 @@
             </StackLayout>
 
             <Button Margin="0,15" BackgroundColor="{StaticResource SecondaryColor}"
-                    Text="Sign up" TextColor="{StaticResource PrimaryColor}" FontFamily="SegoeUI"
+                    Text="Зарегестрироваться" TextColor="{StaticResource PrimaryColor}" FontFamily="SegoeUI"
                     Command="{Binding RegisterCommand}"
                     IsEnabled="{Binding IsNotBusy}"/>
             <Label 
@@ -108,7 +99,7 @@
             <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <Button FontFamily="SegoeUI" TextColor="Black" 
-                       FontSize="16" Text="I have an account"  VerticalOptions="EndAndExpand" BackgroundColor="White"
+                       FontSize="14" Text="У меня уже есть аккаунт"  VerticalOptions="EndAndExpand" BackgroundColor="White"
                        HorizontalOptions="EndAndExpand" 
                        Clicked="LoginRedirect"
                        />
@@ -116,4 +107,6 @@
             </StackLayout>
         </StackLayout>
     </Grid>
+    </ScrollView>
+
 </ContentPage>

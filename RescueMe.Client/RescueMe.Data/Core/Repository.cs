@@ -21,9 +21,9 @@ namespace RescueMe.Data.Core
             return result;
         }
 
-        public async Task<IReadOnlyCollection<T>> GetAllAsync()
+        public async Task<List<T>> GetAllAsync()
         {
-            var result = await Data.ToListAsync();
+            var result =  await Data.ToListAsync();
 
             return result;
         }

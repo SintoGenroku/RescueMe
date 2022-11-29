@@ -1,36 +1,70 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RescueMe.Client.Views.HelpDeskPage"
              xmlns:controls="clr-namespace:RescueMe.Client.Controls"
-             Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             xmlns:viewmodel="clr-namespace:RescueMe.Client.ViewModels"
+             xmlns:searchHandlers="clr-namespace:RescueMe.Client.Handlers.SearchHandlers"
+             x:Class="RescueMe.Client.Views.HelpDeskPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="AliceBlue">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding Emergencies}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="5*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
+        <controls:NavBar Grid.Row="0"/>
+        <SearchBar 
+            Grid.Row="1" 
+            x:Name="EmergencySearch" 
+            Placeholder="Поиск..." 
+            CancelButtonColor="{StaticResource Primary}" 
+            PlaceholderColor="Grey"
+            TextChanged="EmergencySearchTextChanged"
+            HorizontalOptions="Center"
+            >
+            
+        </SearchBar>
+        <CollectionView  Grid.Row="2" 
+                         x:Name="EmergencyList"
+                         ItemsSource="{Binding Emergencies}"
+                         Margin="0,20,0,0"
+                         SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate >
+                    <StackLayout Orientation="Vertical" 
+                                 Padding="10" >
+                        <Frame HeightRequest="100">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HelpDeskViewModel}}, Path=GoToDetailsCommand}"/>
+
+                            </Frame.GestureRecognizers>
                             
-                            <Label Grid.Column="1"
-                           Text="{Binding Title}"
-                           FontAttributes="Bold" />
-                            <Button Grid.Column="1" BackgroundColor="{StaticResource SecondaryColor}"
-                    TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansSemibold"
-                    Command="{Binding LoginCommand}"
-                    IsEnabled="{Binding IsNotBusy}"/>
-                        </Grid>
-                    </ViewCell>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0"
+                                            Text="{Binding Tittle}"
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            VerticalOptions="Center"/>
+
+                                    <Image Grid.Column="1"  Margin="15"
+                                            Source="more_bttn.svg"/>
+
+                                </Grid>
+                        </Frame>
+                    </StackLayout>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
 </ContentPage>

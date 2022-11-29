@@ -7,7 +7,7 @@ namespace RescueMe.Data.Repositories
 {
     public class EmergencyRepository : Repository<Emergency>, IEmergencyRepository
     {
-        public EmergencyRepository(DbContext context) : base(context)
+        public EmergencyRepository(RescueMeDbContext context) : base(context)
         {
         }
 

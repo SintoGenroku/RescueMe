@@ -51,9 +51,12 @@
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
 	  <PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
+	  <PackageReference Include="RescueMe.HelpModels" Version="1.0.1" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\RescueMe.Common\RescueMe.Common.csproj" />
 	  <ProjectReference Include="..\RescueMe.Data\RescueMe.Data.csproj" />
 	  <ProjectReference Include="..\RescueMe.Refit\RescueMe.Refit.csproj" />
 	</ItemGroup>
@@ -65,6 +68,9 @@
 	  <MauiXaml Update="Controls\NavBar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\EmergencyDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\HelpDeskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -72,6 +78,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
-
+	
 
 </Project>

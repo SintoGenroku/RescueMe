@@ -13,19 +13,18 @@
         </Grid.RowDefinitions>
         <controls:Header/>
         <StackLayout Margin="20" Grid.Row="1">
-    
             <StackLayout Margin="0,80">
-                <Label FontSize="32" Text="Welcome Back"/>
+                <Label FontSize="32" Text="С возвращением!"/>
                 <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Sign in to continue"/>
+                       FontSize="16" Text="Войдите, чтобы продолжить"/>
             </StackLayout>
 
             <StackLayout>
                 <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Your phone number"/>
+                       FontSize="16" Text="Введите свой номер телефона"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter phone" 
+                    <Entry BackgroundColor="Transparent" Placeholder="Номер" 
                            TextColor="Black" Margin="5,0"
                            PlaceholderColor="Gray"
                            Text="{Binding PhoneNumber}"/>
@@ -33,10 +32,10 @@
                 </Grid>
 
                 <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
-                       FontSize="16" Text="Password"/>
+                       FontSize="16" Text="Введите пароль"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter password" 
+                    <Entry BackgroundColor="Transparent" Placeholder="Пароль" 
                            TextColor="Black" Margin="5,0"
                            PlaceholderColor="Gray" IsPassword="True"
                            Text="{Binding Password}"/>
@@ -45,7 +44,7 @@
             </StackLayout>
 
             <Button Margin="0,15" BackgroundColor="{StaticResource SecondaryColor}"
-                    Text="Sign in" TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansSemibold"
+                    Text="Войти" TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansSemibold"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsNotBusy}"/>
 
@@ -59,10 +58,10 @@
             <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <Button FontFamily="OpenSansRegular" TextColor="Black" BackgroundColor="White"
-                       FontSize="16" Text="Forgot Password?" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"
+                       FontSize="14" Text="Забыли пароль?" VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand"
                        />
                 <Button FontFamily="OpenSansRegular" TextColor="Black" 
-                       FontSize="16" Text="Register"  VerticalOptions="EndAndExpand" BackgroundColor="White"
+                       FontSize="14" Text="Регистрация"  VerticalOptions="EndAndExpand" BackgroundColor="White"
                        HorizontalOptions="EndAndExpand" 
                        Clicked="RegistrationRedirect"
                        />

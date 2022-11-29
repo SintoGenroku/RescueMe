@@ -17,30 +17,33 @@
             Padding="30,0"
             VerticalOptions="Center" Grid.Row="1">
             <Label
-                Text="Click the button if something went wrong"
+                Text="Нажмите на кнопку, если вам нужна помощь"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="16"
                 HorizontalOptions="CenterAndExpand"/>
 
             <Button
                 x:Name="CounterBtn"
-                Text="Help me!"
+                Text="На помощь!"
                 FontSize="30"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
                 HorizontalOptions="Center"
                 CornerRadius="120"
                 HeightRequest="240"
-                WidthRequest="240"/>
+                WidthRequest="240"
+                Command="{Binding CallLifeguardCommand}"/>
 
-            <Button
+            <ImageButton
+                BackgroundColor="{StaticResource Primary}"
                 x:Name="SearchBtn"
                 HorizontalOptions="Center"
+                Source="search.svg"
+                Scale="0.8"
                 CornerRadius="40"
                 HeightRequest="80"
-                WidthRequest="80">
+                WidthRequest="80"
+                Command="{Binding GoToHelpDeskCommand}">
                 
-            </Button>
+            </ImageButton>
 
         </VerticalStackLayout>
     </Grid>

@@ -17,10 +17,9 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Clicked="HelpDeskRedirect" Text="Help desk"/>
-            
-            <Button Grid.Column="1" Clicked="MainPageRedirect" Text="Home"/>
+            <Button Grid.Column="0" Clicked="MainPageRedirect" Text="Главная" FontSize="16"/>
 
+            <Button Grid.Column="1" Clicked="HelpDeskRedirect" Text="Справочник" FontSize="16"/>
 
         </Grid>
     </Grid>
